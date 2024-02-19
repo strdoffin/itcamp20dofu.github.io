@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "Kanit", sans-serif;
+            font-style: normal;
+        }
+        </style>
+</head>
+<body>
+    <div style="padding:200px ; text-align: center;">
+        <h1 style="font-size: 100px;">PIC SAVE</h1>
+        <p>Website that can <span style="text-decoration: underline;font-weight: bolder;">Saved Your Picture Temporary</span> by localStorage</p>
+        <div style="text-align: center;">
+            <p>Upload Profile:<input type="file" id="profile" required></p>
+            <p>Enter Username:<input type="text" id="name" required><button id="btn">Submit</button></p>
+        </div>
+        
+        
+    </div>
+</body>
+</html>
+<script>
+    const prof = document.getElementById('profile');
+    const username = document.getElementById('name');
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', ()=>{
+        localStorage.setItem('username',username.value);        
+        window.location.href = "main.html";
+    })
+    prof.addEventListener('change',()=>{
+        const file = new FileReader();
+        file.readAsDataURL(prof.files[0]);
+        file.addEventListener('load',()=>{
+            const url = file.result;
+            const img = new Image();
+            img.src = url;
+            localStorage.setItem('prof',url);
+
+        })
+    })
+
+</script>
